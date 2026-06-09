@@ -43,6 +43,3 @@ Client → Zuul Gateway → Microservices
 - API Gateway Routing
 - Dockerized Deployment
 
-## Author
-
-Isha Shah
