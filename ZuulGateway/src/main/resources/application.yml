@@ -1,0 +1,36 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: zuul-gateway
+
+eureka:
+
+  client:
+    service-url:
+      defaultZone: http://host.docker.internal:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+zuul:
+  sensitive-headers: Cookie,Set-Cookie
+
+  routes:
+    demo-service:
+      path: /demo/**              # ✅ demo routes under /demo/
+      serviceId: demo-service
+      stripPrefix: true           # ✅ strips /demo before forwarding
+
+    demo1-service:
+      path: /demo1/**             # ✅ demo1 routes under /demo1/
+      serviceId: demo1-service
+      stripPrefix: true           # ✅ strips /demo1 before forwarding
+
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
